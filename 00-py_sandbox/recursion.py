@@ -2,12 +2,19 @@
 # Aug 2020
 
 def factorial(n):
-    return 1
+    ans = 1
+    while n > 1:
+        ans *= n
+        n -= 1
+    return ans
 
 def fib(n):
-    return 1
+    a,b = 1,1
+    for i in range(n-1):
+        a,b = b, a+b
+    return a
 
 print("Good News Everyone!")
-print(f"1! = {factorial(1)}" )
-print(f"fib(1) = {fib(1)}" )
+print(f"4! = {factorial(4)}" )
+print(f"fib(5) = {fib(5)}" )
 
