@@ -1,0 +1,9 @@
+Ethical CS Topics - Ranked (10/21/2020)
+
+1. Environment
+
+2. Public Policy
+
+3. Security vs Convenience
+
+4. Data/compute [de]centralization
