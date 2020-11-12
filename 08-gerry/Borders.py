@@ -1,6 +1,7 @@
 # There are 2 functions in here:
 # 1) addColor(num, i=None)
 # 2) createDistrictBorders(vote, map)
+# 3) printMaps(cols, vote, map)
 
 
 ####################################
@@ -144,3 +145,36 @@ def createDistrictBorders(vote, map):
 ##    END OF DISTRICT BORDERS     ##
 ####################################
 
+
+####################################
+##       print multiple           ##
+##      maps side-by-side         ##
+####################################
+def printMaps(cols, vote, maps):
+  mapIndex = 1
+  while (mapIndex < len(maps)):
+    #add the maps we want next to each other into an array of strings
+    output = ""
+    groupOfMaps = []
+    for c in range(cols):
+      if (mapIndex < len(maps)):
+        groupOfMaps.append(createDistrictBorders(vote, maps[mapIndex]))
+        mapIndex += 1
+    #assuming all maps have the same number of rows, count the number of '\n' in the first map
+    count = 0
+    for i in groupOfMaps[0]:
+      if i == '\n':
+        count += 1
+    #now grab one line at a time from each string in the groupOfMaps array
+    startIndex = 0
+    for line in range(count):
+      stopIndex = groupOfMaps[0].index('\n',startIndex)
+      for n in range(len(groupOfMaps)):
+        output += groupOfMaps[n][startIndex:stopIndex]
+        output += '\t'
+      output += '\n'
+      startIndex = stopIndex+1
+    print(output)
+####################################
+##       END of printMaps         ##
+####################################

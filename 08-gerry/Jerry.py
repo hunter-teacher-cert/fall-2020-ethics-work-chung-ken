@@ -30,49 +30,53 @@ def createDistrict(currentMap, allMaps, distNum):
   #if the location returned -1, then the map is full (no empty cells)
   if location[0] != -1:
     #Variation 1, check if the next unassigned cell can join a vertical district
-    if (location[0] < 4 
+    if (location[0] < len(currentMap)-2 
       and currentMap[location[0]+1][location[1]]==0 
       and currentMap[location[0]+2][location[1]]==0):
       mapV1 = deepcopy(currentMap)
       mapV1[location[0]][location[1]] = distNum
       mapV1[location[0]+1][location[1]] = distNum
       mapV1[location[0]+2][location[1]] = distNum
+      #print('added v1', end=', ')
       createDistrict(mapV1, allMaps, distNum+1)
     
     #Variation 2, check if the next unassigned cell can join a horizontal district
-    if (location[1] == 0 
+    if (location[1] < len(currentMap[location[0]])-2 
       and currentMap[location[0]][location[1]+1]==0 
       and currentMap[location[0]][location[1]+2]==0):
       mapV2 = deepcopy(currentMap)
       mapV2[location[0]][location[1]] = distNum
       mapV2[location[0]][location[1]+1] = distNum
       mapV2[location[0]][location[1]+2] = distNum
+      #print('added v2', end=', ')
       createDistrict(mapV2, allMaps, distNum+1)
 
     #Variation 3, check if the next unassigned cell can join a ┌ district
-    if (location[0] < 5 and location[1] < 2
+    if (location[0] < len(currentMap)-1 and location[1] < len(currentMap[location[0]])-1
       and currentMap[location[0]+1][location[1]]==0 
       and currentMap[location[0]][location[1]+1]==0
-      and not (location[0]==4 and location[1]==1)):
+      and not (location[0]==len(currentMap)-2 and location[1]==len(currentMap[location[0]])-2)):
       mapV3 = deepcopy(currentMap)
       mapV3[location[0]][location[1]] = distNum
       mapV3[location[0]+1][location[1]] = distNum
       mapV3[location[0]][location[1]+1] = distNum
+      #print('added v3', end=', ')
       createDistrict(mapV3, allMaps, distNum+1)
 
     #Variation 4, check if the next unassigned cell can join a ┐ district
-    if (location[0] < 5 and location[1] < 2
+    if (location[0] < len(currentMap)-1 and location[1] < len(currentMap[location[0]])-1
       and currentMap[location[0]][location[1]+1]==0 
       and currentMap[location[0]+1][location[1]+1]==0
-      and not (location[0]==4 and location[1]==0)):
+      and not (location[0]==len(currentMap)-2 and location[1]==0)):
       mapV4 = deepcopy(currentMap)
       mapV4[location[0]][location[1]] = distNum
       mapV4[location[0]][location[1]+1] = distNum
       mapV4[location[0]+1][location[1]+1] = distNum
+      #print('added v4', end=', ')
       createDistrict(mapV4, allMaps, distNum+1)
 
     #Variation 5, check if the next unassigned cell can join a ┘ district
-    if (location[0] < 5 and location[1] > 0
+    if (location[0] < len(currentMap)-1 and location[1] > 0
       and currentMap[location[0]+1][location[1]]==0 
       and currentMap[location[0]+1][location[1]-1]==0
       and not (location[0]==0 and location[1]==1)):
@@ -80,21 +84,24 @@ def createDistrict(currentMap, allMaps, distNum):
       mapV5[location[0]][location[1]] = distNum
       mapV5[location[0]+1][location[1]] = distNum
       mapV5[location[0]+1][location[1]-1] = distNum
+      #print('added v5', end=', ')
       createDistrict(mapV5, allMaps, distNum+1)
 
     #Variation 6, check if the next unassigned cell can join a L district
-    if (location[0] < 5 and location[1] < 2
+    if (location[0] < len(currentMap)-1 and location[1] < len(currentMap[location[0]])-1
       and currentMap[location[0]+1][location[1]]==0 
       and currentMap[location[0]+1][location[1]+1]==0
-      and not (location[0]==0 and location[1]==1)):
+      and not (location[0]==0 and location[1]==len(currentMap[location[0]])-2)):
       mapV6 = deepcopy(currentMap)
       mapV6[location[0]][location[1]] = distNum
       mapV6[location[0]+1][location[1]] = distNum
       mapV6[location[0]+1][location[1]+1] = distNum
+      #print('added v6', end=', ')
       createDistrict(mapV6, allMaps, distNum+1)
 
   else:
     allMaps.append(currentMap)
+    #print('FOUND A MAP!')
 ###############################################
 ##    END of createDistrict function         ##
 ###############################################
@@ -111,13 +118,18 @@ def gerrymander(votes, team):
   #create an array to store all the district variations
   #gerrymandered worlds will be stored by districts won
   multiverseResults = []
-  for i in range(7):
+  #assume a square state with 3 cells per district and # of cells is divisible by 3
+  numDist = int( len(votes) * len(votes[0]) / 3 )
+  for i in range(numDist+1):
     multiverseResults.append([i])
   
-  #create a 6x3 state with no districts
+  #create a state map with no districts
   noDistricts = []
-  for i in range(6):
-    noDistricts.append([0,0,0])
+  for i in range(len(votes)):
+    blankRow = []
+    for c in range(len(votes[0])):
+      blankRow.append(0)
+    noDistricts.append(blankRow)
   #create the infinite district variations
   allMaps = []
   createDistrict(noDistricts, allMaps, 1)
@@ -129,9 +141,9 @@ def gerrymander(votes, team):
   #analyze which party won in each district map variations
   for i in range(len(allMaps)):
     result = Result.checkWin(votes, allMaps[i])
-    multiverseResults[result[7][team]].append(allMaps[i])
+    multiverseResults[result[len(result)-1][team]].append(allMaps[i])
   
-  return multiverseResults
+  return multiverseResults, len(allMaps)
 ###############################################
 ##      END of gerrymander function          ##
 ###############################################
