@@ -1,0 +1,31 @@
+Flask website:
+
+1) Trebek Trivia home page
+2) Start Game page - Enter username(s):
+2) Start Jeopardy game
+3) Pull questions from a database
+4) Check for correct answer
+?) Create a database to save score? Or can this be done with variables?
+Accessibility Features
+5) Resize text
+6) Adjust background - Light, Dark, Jeopardy
+7) Read aloud text
+
+# To start server
+python -m venv servername
+source trebek/Scripts/activate
+pip install flask
+pip install flask-sqlalchemy
+#pip install websocketss
+```
+pip freeze #check what's running
+
+# Commands to get auto reload for flask
+export FLASK_ENV=development
+export FLASK_APP=app.py
+
+# Commands to start up database
+winpty python
+from app import db
+db.create_all()
+exit()
