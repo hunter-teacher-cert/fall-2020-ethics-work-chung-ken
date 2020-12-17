@@ -1,0 +1,33 @@
+import Print
+
+def display():
+  Print.clear()
+  print()
+  Print.yellow('You have just experienced one part of the e-waste cycle.')
+  Print.cyan('\nWrite the next part of the cycle to help finish the game.\n')
+  Print.green("E.T. thanks you. Maybe he'll be able to call more friends with some re-purposed e-waste next time." + Print.yellowf(" (Don't worry. That's the same finger.)"))
+  print()
+  drawET()
+
+def drawET():
+  print("              @@#(((((#(#(((%%%&@&@#(&##                    ")
+  print("          @#((/**#/****//#(#(/////**//(//(//**/**           ")
+  print("       &&((****,..,.,.,.,,,,***(**/,***((/,*,*   *          ")
+  print("      %(///,,,,******/,*,*/,...,,,/**,*..                   ")
+  print("     #(///*,*/*,,,.,..,..,*/(//#*(//,,//,**,,.    .         ")
+  print("    #(//***/,,,.,..(&&*.,.,/***///*********.       .        ")
+  print("  @&/#//**//,.,(,, ,.%%%/..//*,,. .   ...  .  *#/  .        ")
+  print(" &%%**/***/**,,,..,*.,,..,,*/*.,,.  .,... ..,,..   .,       ")
+  print(" #(///**(//*/(**,,*****/(./**,,,*,,**,*,.... ,...,          ")
+  print(" ////****,/****,....*,,,,,,/,,*,,,,,,,,,..... ..            ")
+  print("  ////***,,,,,,..,,,.,.,,/*.,**,,,,,,,......                ")
+  print("     ///***,,,,,,,,,,,,,*.. ...,,..,.,. ... .               ")
+  print("      (*//****,.,,,,..    ,,, .,. ....                      ")
+  print("       /**,***,.........                                    ")
+  print("         **,*,,...    .           *                         ")
+  print("         *****,,,..     .                       .,..,,,/**/ ")
+  print("         /*****,,..   . .                *,,,,,..    .,//(* ")
+  print("        &/*****.,.......             .,**..                 ")
+  print("        %(//*,,,,,,,.,..            ,*/(*                   ")
+  print("       #&/*//*,,,... ..           ./***,,,,                 ")
+  print("       *(/**,........,         **,,**,,,..,,..              ")
