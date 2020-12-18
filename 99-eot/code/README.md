@@ -4,11 +4,12 @@
 
 ## Description:
 
-The original code is titled ***E.T. Saw e-waste***.  The program, written in Python, was meant to be a choose-your-own adventure style game used for learning/teaching about different aspects of the e-waste issue and what we can do to address those problems.  The program is built to handle multiple "stories" or perspectives on the e-waste cycle.
+The original code is titled ***E.T. Saw e-waste***.  The program, written in Python, was meant to be a choose-your-own adventure style game used for learning/teaching about different aspects of the e-waste issue and what we can do to address those problems.  The program is built to handle multiple "stories" or perspectives on the e-waste cycle with the purpose of initiating change through educating.
 
-The one that we have written out here is a specific point about how government regulation - specifically addressing the Digital Copyright Millennium Act - can help reduce e-waste through Right to Repair legislation.
+The one that we have written out here is a specific point about how government regulation - specifically addressing the Digital Millennium Copyright Act - can help reduce e-waste through Right to Repair legislation.
 
-Other perspectives we would like to pursue (or have students pursue) are:
+#### Other perspectives we would like to pursue (or have students pursue) are:
+
 * Other U.S. legislation
 * Legislation outside of the U.S.
 * Tech companies
@@ -18,6 +19,8 @@ Other perspectives we would like to pursue (or have students pursue) are:
 * The U.N.
 * 3rd-world recycling
 * Pollution
+
+***(Students would create a new perspectiveStory.py file modeled off of govtStory.py)***
 
 ---
 
